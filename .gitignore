@@ -1,0 +1,27 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+archived/
+*.py[cod]
+*$py.class
+
+# Local development settings
+.env
+venv/
+.vscode/
+
+# Logs
+*.log
+
+# Database files
+# *.db
+
+# Compiled source
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+# Generated files
+*.pyc
