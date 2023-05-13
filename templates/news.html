@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>App de Notícias do Dólar e seu cenário</title>
+  </head>
+  <body>
+    <!-- Breadcrumbs -->
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            {% set date01 = "10/05/2023" %}
+            {% set date02 = "09/05/2023" %}
+            {% set date03 = "08/05/2023" %}
+            <li class="breadcrumb-item {{ 'active' if date == date01 }}"><a href="/news?date=2023-05-10">{{ date01 }}</a></li>
+            <li class="breadcrumb-item {{ 'active' if date == date03 }}"><a href="/news?date=2023-05-09">{{ date02 }}</a></li>
+            <li class="breadcrumb-item {{ 'active' if date == date03 }}"><a href="/news?date=2023-05-08">{{ date03 }}</a></li>
+        </ol>
+    </nav>
+
+    <div class="container">
+      <h1 class="my-4">Notícias de {{ date }}</h1>
+      <div class="row">
+        <div class="col-md-8">
+          {% if news_titles %}
+          <ul class="list-group">
+            {% for news in news_titles %}
+            <li class="list-group-item">{{ news }}</li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <p>No news for this date.</p>
+          {% endif %}
+        </div>
+        <div class="col-md-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Tendência do dólar</h5>
+              <p class="card-text"><b>{% if market_status == 'alta' %}Dólar em alta{% elif market_status == 'baixa' %}Dólar em baixa{% else %}Sem tendência{% endif %}</b></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-8 mx-auto mt-2">
+          <div class="card">
+            <img class="card-img-top" src="{{ url_for('static', filename=date.replace("/", "-")+'.png') }}" alt="Card image cap">
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- Footer -->
+  <footer class="bg-light py-3 mt-2">
+    <div class="container">
+      <p class="text-center mb-0">Desafio RO</p>
+    </div>
+  </footer>
+
+  </body>
+</html>
